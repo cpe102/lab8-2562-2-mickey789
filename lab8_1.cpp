@@ -3,6 +3,15 @@
 using namespace std;
 
 int main(){	
+  double Interest, percent;
+  float PrevBalance,Total,Payment,NewBalance = 1 ;
+  int EndOfYear = 0;
+	cout << "Enter intial loan: ";
+	cin >> PrevBalance;
+	cout << "Enter interest rate per year (%): ";
+  cin >> percent;
+  cout << "Enter amount you can pay per year: ";
+  cin >> Payment;
 
 	//use 'setw' to set width of table and 'left' to set left-alignment
 	//you can change input argument of 'setw()' to see the effect
@@ -14,17 +23,29 @@ int main(){
 	cout << setw(13) << left << "Payment";
 	cout << setw(13) << left << "NewBalance";
 	cout << "\n";
-	
+
+  while (NewBalance != 0){
+    EndOfYear++;
+    cout << fixed << setprecision(2); 
+	  cout << setw(13) << left << EndOfYear; 
+	  cout << setw(13) << left << PrevBalance;
+    Interest =  PrevBalance*(percent/100);
+	  cout << setw(13) << left << Interest;
+    Total = PrevBalance + Interest;
+	  cout << setw(13) << left << Total;
+    if (Payment<=Total) {
+      	cout << setw(13) << left << Payment;
+    }
+    else {
+      Payment = Total;
+      cout << setw(13) << left << Payment;
+    }
+    NewBalance = Total - Payment;
+	  cout << setw(13) << left << NewBalance;
+	  cout << "\n";	
+    PrevBalance = NewBalance;
+  }
 	//use 'fixed' and 'setprecision' to fix the number of decimal digits for displaying
 	//you can change input argument of 'setprecision()' to see the effect
-	cout << fixed << setprecision(2); 
-	cout << setw(13) << left << 1; 
-	cout << setw(13) << left << 1000.0;
-	cout << setw(13) << left << 50.0;
-	cout << setw(13) << left << 1050.0;
-	cout << setw(13) << left << 100.0;
-	cout << setw(13) << left << 950.0;
-	cout << "\n";	
-	
 	return 0;
 }
